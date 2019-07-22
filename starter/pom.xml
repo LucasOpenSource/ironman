@@ -24,6 +24,11 @@
       <artifactId>user</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.lucasluo</groupId>
+      <artifactId>shiro</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -18,6 +18,8 @@
   <modules>
     <module>user</module>
     <module>base</module>
+    <module>common</module>
+    <module>shiro</module>
   </modules>
 
   <dependencies>
