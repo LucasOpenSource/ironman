@@ -10,6 +10,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.lucasluo.ironman.shiro.token.JwtToken;
 import org.lucasluo.ironman.user.model.User;
 import org.lucasluo.ironman.user.service.user.UserService;
 
@@ -22,6 +23,11 @@ public class IronManShiroDatebaseRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         return null;
+    }
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof JwtToken;
     }
 
     @Override

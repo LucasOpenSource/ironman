@@ -52,6 +52,7 @@ public class IronManShiroConfig {
 
         Map<String, String> filterRuleMap = new HashMap<>();
         filterRuleMap.put("/**", "jwt");
+        filterRuleMap.put("/login", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterRuleMap);
 
         return shiroFilterFactoryBean;

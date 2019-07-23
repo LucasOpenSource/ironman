@@ -4,11 +4,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.lucasluo.ironman.shiro.token.JwtToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Slf4j
 public class JwtFilter extends BasicHttpAuthenticationFilter {
 
     private static String LOGIN_SIGN = "Authorization";
@@ -16,7 +18,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
-        String authorization = req.getHeader("LOGIN_SIGN");
+        String authorization = req.getHeader(LOGIN_SIGN);
         return authorization != null;
     }
 
@@ -45,11 +47,13 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         if(isLoginAttempt(request, response)) {
             try {
                 executeLogin(request, response);
+                return true;
             } catch (Exception e) {
+                log.error("登录权限异常", e);
                 throw new RuntimeException("登录权限不足");
             }
         }
-        return true;
+        return false;
     }
 
     @Override
