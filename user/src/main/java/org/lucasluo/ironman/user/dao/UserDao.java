@@ -1,5 +1,6 @@
 package org.lucasluo.ironman.user.dao;
 
+import java.util.List;
 import org.lucasluo.ironman.user.model.User;
 
 public interface UserDao {
@@ -16,4 +17,6 @@ public interface UserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectAll();
 }

@@ -1,4 +1,4 @@
-package org.lucasluo.ironman.user.entity.login;
+package org.lucasluo.ironman.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,8 +6,9 @@ import org.lucasluo.ironman.base.entity.BaseEntity;
 
 @Setter
 @Getter
-public class LoginUserEntity extends BaseEntity {
+public class UserRegisterEntity extends BaseEntity {
+
     private String username;
     private String password;
-    private String token;
+    private String realname;
 }

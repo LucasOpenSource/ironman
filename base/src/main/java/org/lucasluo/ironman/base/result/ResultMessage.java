@@ -4,6 +4,7 @@ public enum  ResultMessage {
     SUCCESS("success"),
     FAIL("fail"),
     INVALID_PARAMETER("Invalid parameter!"),
+    NO_SUCH_USER("No such user!"),
     REGISTER_USER_SUCCEED("Register user succeed!"),
     LOGIN_SUCCESS("Login succeed!"),
     LOGIN_FAILED("Unable to login due to fatal error!"),

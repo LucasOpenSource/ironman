@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private Long id;
 
-    private String primaryKey;
+    private Long primaryKey;
 
     private String userName;
 
@@ -33,12 +33,12 @@ public class User {
         this.id = id;
     }
 
-    public String getPrimaryKey() {
+    public Long getPrimaryKey() {
         return primaryKey;
     }
 
-    public void setPrimaryKey(String primaryKey) {
-        this.primaryKey = primaryKey == null ? null : primaryKey.trim();
+    public void setPrimaryKey(Long primaryKey) {
+        this.primaryKey = primaryKey;
     }
 
     public String getUserName() {
