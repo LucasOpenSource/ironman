@@ -20,6 +20,8 @@
     <module>base</module>
     <module>common</module>
     <module>shiro</module>
+    <module>login</module>
+    <module>permission</module>
   </modules>
 
   <dependencies>

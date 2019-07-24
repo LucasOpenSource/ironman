@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lucasluo.ironman.permission.dao.perm.PermissionDao">
+  <resultMap id="BaseResultMap" type="org.lucasluo.ironman.permission.model.perm.Permission">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PERM_ID" jdbcType="BIGINT" property="permId" />
+    <result column="PERM_NAME" jdbcType="VARCHAR" property="permName" />
+    <result column="PERM_DESC" jdbcType="VARCHAR" property="permDesc" />
+    <result column="PERM_TYPE_ID" jdbcType="BIGINT" property="permTypeId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="VERSION" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PERM_ID, PERM_NAME, PERM_DESC, PERM_TYPE_ID, CREATOR, CREATE_TIME, MODIFIER, 
+    MODIFY_TIME, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_p_permission
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from im_p_permission
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.lucasluo.ironman.permission.model.perm.Permission">
+    insert into im_p_permission (ID, PERM_ID, PERM_NAME, 
+      PERM_DESC, PERM_TYPE_ID, CREATOR, 
+      CREATE_TIME, MODIFIER, MODIFY_TIME, 
+      VERSION)
+    values (#{id,jdbcType=BIGINT}, #{permId,jdbcType=BIGINT}, #{permName,jdbcType=VARCHAR}, 
+      #{permDesc,jdbcType=VARCHAR}, #{permTypeId,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lucasluo.ironman.permission.model.perm.Permission">
+    insert into im_p_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="permId != null">
+        PERM_ID,
+      </if>
+      <if test="permName != null">
+        PERM_NAME,
+      </if>
+      <if test="permDesc != null">
+        PERM_DESC,
+      </if>
+      <if test="permTypeId != null">
+        PERM_TYPE_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="permId != null">
+        #{permId,jdbcType=BIGINT},
+      </if>
+      <if test="permName != null">
+        #{permName,jdbcType=VARCHAR},
+      </if>
+      <if test="permDesc != null">
+        #{permDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="permTypeId != null">
+        #{permTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lucasluo.ironman.permission.model.perm.Permission">
+    update im_p_permission
+    <set>
+      <if test="permId != null">
+        PERM_ID = #{permId,jdbcType=BIGINT},
+      </if>
+      <if test="permName != null">
+        PERM_NAME = #{permName,jdbcType=VARCHAR},
+      </if>
+      <if test="permDesc != null">
+        PERM_DESC = #{permDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="permTypeId != null">
+        PERM_TYPE_ID = #{permTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lucasluo.ironman.permission.model.perm.Permission">
+    update im_p_permission
+    set PERM_ID = #{permId,jdbcType=BIGINT},
+      PERM_NAME = #{permName,jdbcType=VARCHAR},
+      PERM_DESC = #{permDesc,jdbcType=VARCHAR},
+      PERM_TYPE_ID = #{permTypeId,jdbcType=BIGINT},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

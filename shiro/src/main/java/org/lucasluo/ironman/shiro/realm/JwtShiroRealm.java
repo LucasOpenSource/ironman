@@ -1,7 +1,10 @@
 package org.lucasluo.ironman.shiro.realm;
 
+import com.lucasluo.ironman.common.utils.CredentialsUtils;
+import com.lucasluo.ironman.common.utils.JedisUtils;
 import com.lucasluo.ironman.common.utils.JwtUtils;
 import javax.annotation.Resource;
+import javax.security.auth.login.AccountNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -15,10 +18,13 @@ import org.lucasluo.ironman.user.model.User;
 import org.lucasluo.ironman.user.service.user.UserService;
 
 @Slf4j
-public class IronManShiroDatebaseRealm extends AuthorizingRealm {
+public class JwtShiroRealm extends AuthorizingRealm {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private JedisUtils jedisUtils;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -37,7 +43,7 @@ public class IronManShiroDatebaseRealm extends AuthorizingRealm {
         String username = JwtUtils.getUserName(token);
         User user = userService.getByUserName(username);
         if(user != null) {
-            return new SimpleAuthenticationInfo(token, token, getName());
+            return new SimpleAuthenticationInfo(username, token, getName());
         }
         return null;
     }

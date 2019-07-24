@@ -11,7 +11,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.lucasluo.ironman.shiro.filter.JwtFilter;
-import org.lucasluo.ironman.shiro.realm.IronManShiroDatebaseRealm;
+import org.lucasluo.ironman.shiro.realm.JwtShiroRealm;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,8 @@ import org.springframework.context.annotation.DependsOn;
 public class IronManShiroConfig {
 
     @Bean
-    public IronManShiroDatebaseRealm shiroDatebaseRealm() {
-        return new IronManShiroDatebaseRealm();
+    public JwtShiroRealm shiroDatebaseRealm() {
+        return new JwtShiroRealm();
     }
 
     @Bean("securityManager")
@@ -51,8 +51,8 @@ public class IronManShiroConfig {
         shiroFilterFactoryBean.setFilters(filterMap);
 
         Map<String, String> filterRuleMap = new HashMap<>();
-        filterRuleMap.put("/**", "jwt");
         filterRuleMap.put("/login", "anon");
+        filterRuleMap.put("/**", "jwt");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterRuleMap);
 
         return shiroFilterFactoryBean;
